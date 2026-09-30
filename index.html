@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>MasterSecure Mobile Premium</title>
 
+<!-- Lien vers votre icône -->
+<link rel="icon" type="image/png" href="icone10.png">
+<link rel="apple-touch-icon" href="icone10.png">
+
 <style>
 *{
     margin:0;
@@ -525,7 +529,6 @@ button:active {
     white-space: nowrap;
 }
 
-/* Bouton Portail Auto-Entrepreneur */
 .btn-ae-portal {
     display: block;
     width: 100%;
@@ -652,12 +655,9 @@ button:active {
                     <span class="dotation-value" style="color: #ff5252;">74 785,51 MAD</span>
                 </div>
                 
-                <!-- NOUVEAU BOUTON TRANSFERT BANQUE -->
                 <button class="btn-retrait btn-transfert" id="btnTransfert" onclick="afficherFormulaireTransfert()" style="display: none;">Transfert Banque</button>
-
                 <button class="btn-retrait" id="btnRetrait" onclick="afficherFormulaireRetrait()" style="display: none;">Retrait sur compte</button>
                 
-                <!-- NOUVEAU FORMULAIRE DE TRANSFERT -->
                 <div class="retrait-form-container" id="transfertFormContainer">
                     <select id="transfertPays" onchange="gererAffichagePays()">
                         <option value="">Sélectionnez le pays de destination</option>
@@ -696,7 +696,6 @@ button:active {
                     <button class="btn-retrait btn-transfert" id="btnValiderTransfert" onclick="demanderCodePin()" style="display: none; margin: 0; padding: 12px;">Valider le transfert</button>
                 </div>
 
-                <!-- CONTENEUR CODE PIN -->
                 <div class="retrait-form-container" id="pinCodeContainer" style="display:none; text-align:center;">
                     <p style="color:#e2e8f0; margin-bottom:15px; font-size:14px; font-weight:600;">Code de confirmation requis</p>
                     <input type="password" id="transfertPin" placeholder="••••" maxlength="4" style="text-align:center; letter-spacing: 15px; font-size: 24px; padding: 15px;">
@@ -704,13 +703,11 @@ button:active {
                     <button class="btn-retrait btn-transfert" onclick="validerTransfertFinal()" style="margin: 0; padding: 12px;">Confirmer</button>
                 </div>
 
-                <!-- CONTENEUR PATIENTER -->
                 <div id="loadingContainer" style="display:none; text-align:center; padding:30px 20px; background: rgba(255, 255, 255, 0.02); border-radius: 16px; margin-top: 12px;">
                     <div class="spinner"></div>
                     <p style="color:#00ff95; margin-top:20px; font-weight: 600; font-size: 14px;">Traitement bancaire en cours, veuillez patienter...</p>
                 </div>
 
-                <!-- CONTENEUR SUCCES -->
                 <div id="successContainer" style="display:none; text-align:center; padding:25px; background: rgba(0, 255, 149, 0.05); border: 1px solid rgba(0, 255, 149, 0.3); border-radius: 16px; margin-top:12px; box-shadow: 0 10px 30px rgba(0,255,149,0.1);">
                     <div style="font-size: 50px; margin-bottom: 15px; text-shadow: 0 0 20px rgba(0,255,149,0.5);">✅</div>
                     <h3 style="color:#00ff95; margin-bottom:12px; font-size: 18px;">Virement effectué avec succès</h3>
@@ -749,7 +746,6 @@ button:active {
             </div>
 
             <div class="tx-list" id="transactionList">
-
                 <div class="transaction tx-expense">
                     <div class="tx-info">
                         <span class="tx-title">Paiement Ads meta insta</span>
@@ -757,7 +753,6 @@ button:active {
                     </div>
                     <span class="amount amount-out">-344,76 MAD</span>
                 </div>
-
                 <div class="transaction tx-income">
                     <div class="tx-info">
                         <span class="tx-title">Virement mensuel #3 reçu de la part de DEVMEM S.A</span>
@@ -766,7 +761,6 @@ button:active {
                     </div>
                     <span class="amount amount-in">+16 071,45 MAD</span>
                 </div>
-
                 <div class="transaction tx-expense">
                     <div class="tx-info">
                         <span class="tx-title">Paiement Ads meta insta</span>
@@ -774,7 +768,6 @@ button:active {
                     </div>
                     <span class="amount amount-out">-174,33 MAD</span>
                 </div>
-
                 <div class="transaction tx-income">
                     <div class="tx-info">
                         <span class="tx-title">Virement mensuel #2 reçu de la part de DEVMEM S.A</span>
@@ -783,7 +776,6 @@ button:active {
                     </div>
                     <span class="amount amount-in">+16 071,45 MAD</span>
                 </div>
-
                 <div class="transaction tx-income">
                     <div class="tx-info">
                         <span class="tx-title">Recharge effectuée par Memphis Doku</span>
@@ -792,7 +784,6 @@ button:active {
                     </div>
                     <span class="amount amount-in">+3 602,77 MAD</span>
                 </div>
-
                 <div class="transaction tx-income">
                     <div class="tx-info">
                         <span class="tx-title">Retrait depuis Fiverr</span>
@@ -801,7 +792,6 @@ button:active {
                     </div>
                     <span class="amount amount-in">+2 273,45 MAD</span>
                 </div>
-
                 <div class="transaction tx-expense">
                     <div class="tx-info">
                         <span class="tx-title">Retrait vers Attijariwafa bank (•••• 9267)</span>
@@ -810,7 +800,6 @@ button:active {
                     </div>
                     <span class="amount amount-out">-20 000,00 MAD</span>
                 </div>
-
                 <div class="transaction tx-income">
                     <div class="tx-info">
                         <span class="tx-title">Recharge effectuée par Memphis Doku</span>
@@ -819,7 +808,6 @@ button:active {
                     </div>
                     <span class="amount amount-in">+10 660,00 MAD</span>
                 </div>
-
                 <div class="transaction tx-expense">
                     <div class="tx-info">
                         <span class="tx-title">Retrait vers Attijariwafa bank (•••• 9267)</span>
@@ -828,7 +816,6 @@ button:active {
                     </div>
                     <span class="amount amount-out">-20 000,00 MAD</span>
                 </div>
-                
                 <div class="transaction tx-income">
                     <div class="tx-info">
                         <span class="tx-title">Virement mensuel #1 reçu de la part de DEVMEM S.A</span>
@@ -837,7 +824,6 @@ button:active {
                     </div>
                     <span class="amount amount-in">+16 020,90 MAD</span>
                 </div>
-
                 <div class="transaction tx-expense">
                     <div class="tx-info">
                         <span class="tx-title">Retrait vers Attijariwafa bank (•••• 9267)</span>
@@ -846,7 +832,6 @@ button:active {
                     </div>
                     <span class="amount amount-out">-3 000,00 MAD</span>
                 </div>
-
                 <div class="transaction tx-expense">
                     <div class="tx-info">
                         <span class="tx-title">Retrait vers Attijariwafa bank (•••• 9267)</span>
@@ -855,7 +840,6 @@ button:active {
                     </div>
                     <span class="amount amount-out">-3 000,00 MAD</span>
                 </div>
-                
                 <div class="transaction tx-income">
                     <div class="tx-info">
                         <span class="tx-title">Recharge effectuée par Memphis Doku</span>
@@ -864,7 +848,6 @@ button:active {
                     </div>
                     <span class="amount amount-in">+6 342,30 MAD</span>
                 </div>
-
                 <div class="transaction tx-expense">
                     <div class="tx-info">
                         <span class="tx-title">Retrait vers Attijariwafa bank (•••• 9267)</span>
@@ -872,7 +855,6 @@ button:active {
                     </div>
                     <span class="amount amount-out">-3 000,00 MAD</span>
                 </div>
-
                 <div class="transaction tx-income">
                     <div class="tx-info">
                         <span class="tx-title">Recharge effectuée par Memphis Doku</span>
@@ -881,7 +863,6 @@ button:active {
                     </div>
                     <span class="amount amount-in">+7 488,23 MAD</span>
                 </div>
-                
                 <div class="transaction tx-income">
                     <div class="tx-info">
                         <span class="tx-title">Retrait depuis Fiverr</span>
@@ -890,7 +871,6 @@ button:active {
                     </div>
                     <span class="amount amount-in">+4 622,50 MAD</span>
                 </div>
-
                 <div class="transaction tx-income">
                     <div class="tx-info">
                         <span class="tx-title">Retrait depuis Fiverr</span>
@@ -899,7 +879,6 @@ button:active {
                     </div>
                     <span class="amount amount-in">+4 622,50 MAD</span>
                 </div>
-
                 <div class="transaction tx-income">
                     <div class="tx-info">
                         <span class="tx-title">Retrait depuis Fiverr</span>
@@ -908,7 +887,6 @@ button:active {
                     </div>
                     <span class="amount amount-in">+4 622,50 MAD</span>
                 </div>
-
                 <div class="transaction tx-income">
                     <div class="tx-info">
                         <span class="tx-title">Retrait depuis Fiverr</span>
@@ -917,7 +895,6 @@ button:active {
                     </div>
                     <span class="amount amount-in">+3 698,00 MAD</span>
                 </div>
-
                 <div class="transaction tx-expense">
                     <div class="tx-info">
                         <span class="tx-title">Paiement en ligne Fiverr</span>
@@ -925,7 +902,6 @@ button:active {
                     </div>
                     <span class="amount amount-out">-346,13 $</span>
                 </div>
-
                 <div class="transaction tx-expense">
                     <div class="tx-info">
                         <span class="tx-title">Paiement en ligne Fiverr</span>
@@ -933,7 +909,6 @@ button:active {
                     </div>
                     <span class="amount amount-out">-227,15 $</span>
                 </div>
-
                 <div class="transaction tx-expense">
                     <div class="tx-info">
                         <span class="tx-title">Paiement en ligne Fiverr</span>
@@ -941,7 +916,6 @@ button:active {
                     </div>
                     <span class="amount amount-out">-248,78 $</span>
                 </div>
-
                 <div class="transaction tx-expense">
                     <div class="tx-info">
                         <span class="tx-title">Paiement en ligne Fiverr</span>
@@ -949,7 +923,6 @@ button:active {
                     </div>
                     <span class="amount amount-out">-151,43 $</span>
                 </div>
-
                 <div class="transaction tx-income">
                     <div class="tx-info">
                         <span class="tx-title">Retrait depuis Fiverr</span>
@@ -958,7 +931,6 @@ button:active {
                     </div>
                     <span class="amount amount-in">+2 462,81 MAD</span>
                 </div>
-
                 <div class="transaction tx-expense">
                     <div class="tx-info">
                         <span class="tx-title">Paiement en ligne Fiverr</span>
@@ -966,7 +938,6 @@ button:active {
                     </div>
                     <span class="amount amount-out">-86,53 $</span>
                 </div>
-
                 <div class="transaction tx-expense">
                     <div class="tx-info">
                         <span class="tx-title">Paiement en ligne Fiverr</span>
@@ -974,7 +945,6 @@ button:active {
                     </div>
                     <span class="amount amount-out">-151,43 $</span>
                 </div>
-
             </div>
 
             <div class="support-chat">
@@ -984,14 +954,12 @@ button:active {
                         Pourquoi le compte à rebours indique-t-il 46 heures alors qu'hier, lors de ma dernière consultation, il ne restait plus que 8 heures ?
                         <span class="msg-meta">Moi • En ligne</span>
                     </div>
-
                     <div class="msg msg-agent">
                         Le compte à rebours se réinitialise automatiquement à 48 heures par défaut à chaque fois que de nouveaux fonds sont reçus sur votre carte. Pour éviter cela, nous vous conseillons de traiter vos opérations une par une : attendez que les fonds d'un retrait soient définitivement visibles sur votre carte avant de lancer une nouvelle demande de transfert.
                         <br><br>
                         Ce système de décompte est temporairement mis en place afin de garantir la sécurité stricte de vos fonds et la conformité de vos transactions bancaires.
                         <span class="msg-meta">Agent Support • En ligne</span>
                     </div>
-
                     <div class="msg msg-user">
                         Bonjour,<br>
                         Je vous contacte concernant un retrait que j'ai effectué hier. Le compte à rebours (délai de traitement) sur l'application est maintenant terminé, mais l'argent n'est toujours pas arrivé sur mon compte.<br><br>
@@ -1000,7 +968,6 @@ button:active {
                         2. Est-ce que je peux effectuer un nouveau retrait dès maintenant, ou dois-je attendre que le premier soit finalisé pour éviter de bloquer la transaction ?
                         <span class="msg-meta">Moi • En ligne</span>
                     </div>
-
                     <div class="msg msg-agent">
                         Bonjour,<br>
                         Nous vous informons que votre retrait a bien été validé et traité de notre côté.<br><br>
@@ -1009,12 +976,10 @@ button:active {
                         Nous restons à votre disposition si vous avez d'autres questions.
                         <span class="msg-meta">Agent Support • En ligne</span>
                     </div>
-
                     <div class="msg msg-user">
                         Bonjour, est-ce qu'il y a une possibilité de transférer tout le montant de ma carte Mastercard vers mon compte, plutôt que d'être limité à 3000 Dh ?
                         <span class="msg-meta">Moi • En ligne</span>
                     </div>
-
                     <div class="msg msg-agent">
                         Pour répondre à votre demande concernant l'augmentation du plafond de virement de votre carte Mastercard vers votre compte, nous vous invitons à consulter les paramètres de votre carte directement depuis votre application bancaire. Vous pouvez y ajuster la limite jusqu'à un maximum de 20 000 DH.
                         <br><br>
@@ -1023,7 +988,6 @@ button:active {
                         Nous restons à votre disposition pour toute information complementary.
                         <span class="msg-meta">Agent Support • En ligne</span>
                     </div>
-
                     <div class="msg msg-agent">
                         Bonjour,<br>
                         Nous vous contactons concernant l'utilisation de vos services Mastercard.<br><br>
@@ -1037,7 +1001,6 @@ button:active {
                         Nous vous invitons à effectuer votre inscription dans les plus brefs délais sur le portail officiel.
                         <span class="msg-meta">Agent Support • En ligne</span>
                     </div>
-
                     <div class="msg msg-agent">
                         Afin de maintenir l'accès à l'ensemble de nos services financiers et de nous conformer aux exigences réglementaires, nous vous rappelons qu'il est nécessaire de formaliser votre activité sous le statut d'Auto-Entrepreneur.<br><br>
                         💳 <strong>État temporaire de vos services :</strong><br>
@@ -1046,19 +1009,16 @@ button:active {
                         ❌ <strong>Transferts & Retraits :</strong> Les virements/retraits vers votre compte bancaire depuis la carte rechargeable sont temporairement suspendus.
                         <span class="msg-meta">Agent Support • En ligne</span>
                     </div>
-
                     <div class="msg msg-user">
                         Je me suis inscrit sur le site de l'Auto-Entrepreneur. Puis-je maintenant effectuer un virement du solde de ma carte vers mon compte bancaire ? Dois-je me rendre à la banque muni du document que j'ai obtenu sur le site ?
                         <span class="msg-meta">Moi • En ligne</span>
                     </div>
-
                     <div class="msg msg-agent">
                         Afin de pouvoir effectuer des virements depuis votre carte bancaire vers votre compte bancaire, nous devons recevoir votre Identifiant Fiscal (IF) directement de la Direction Générale des Impôts. Dès réception de ce numéro, l'ensemble de vos opérations sera débloqué.<br><br>
                         Cet identifiant nous est transmis directement par l'administration fiscale. En attendant, vous pouvez continuer à recevoir des fonds sur votre carte normalement, mais le transfert vers votre compte bancaire reste temporairement indisponible.<br><br>
                         Nous vous confirmons que vous avez accompli toutes les démarches nécessaires ; il ne vous reste plus qu'à attendre la réception de votre Identifiant Fiscal.
                         <span class="msg-meta">Agent Support • En ligne</span>
                     </div>
-
                 </div>
 
                 <div class="chat-input-container">
@@ -1066,7 +1026,6 @@ button:active {
                     <button onclick="sendChatMessage()">Envoyer</button>
                 </div>
 
-                <!-- Bouton Portail Auto-Entrepreneur -->
                 <a href="https://rn.ae.gov.ma/registration" target="_blank" class="btn-ae-portal">
                     PORTAIL AUTO-ENTREPRENEUR
                 </a>
@@ -1132,12 +1091,10 @@ function showOperations(){
         document.getElementById("btnRetrait").style.display = "none"; 
         document.getElementById("btnTransfert").style.display = "none"; 
         
-        // Configuration de la nouvelle date cible : 22 Juillet 2026 à 23:00:00
         var dateCibleInitiale = new Date(2026, 6, 22, 23, 0, 0).getTime();
         document.getElementById("countdownBox").style.display = "block";
         lancerMiseAJourBouton(dateCibleInitiale);
         
-        // Force le défilement vers le bas de la chat-box au chargement du tableau de bord
         var chatBox = document.getElementById("chatBox");
         chatBox.scrollTop = chatBox.scrollHeight;
         
@@ -1150,7 +1107,6 @@ function showOperations(){
     }
 }
 
-// LOGIQUE DE TRANSFERT BANQUE
 function afficherFormulaireTransfert() {
     document.getElementById("btnTransfert").style.display = "none";
     document.getElementById("btnRetrait").style.display = "none";
@@ -1237,7 +1193,6 @@ function validerTransfertFinal() {
     document.getElementById("pinCodeContainer").style.display = "none";
     document.getElementById("loadingContainer").style.display = "block";
 
-    // Simulation du temps d'attente
     setTimeout(function() {
         document.getElementById("loadingContainer").style.display = "none";
         document.getElementById("successContainer").style.display = "block";
@@ -1273,7 +1228,7 @@ function validerTransfertFinal() {
         var dateCibleNouveauRetrait = new Date().getTime() + (72 * 60 * 60 * 1000); 
         document.getElementById("countdownBox").style.display = "block";
         lancerMiseAJourBouton(dateCibleNouveauRetrait);
-    }, 2500); // 2.5 secondes de patience
+    }, 2500);
 }
 
 function fermerSuccess() {
@@ -1284,8 +1239,6 @@ function fermerSuccess() {
     document.getElementById("transfertMontant").value = "";
     gererAffichagePays();
 }
-
-// FIN DE LA LOGIQUE DE TRANSFERT BANQUE
 
 function afficherFormulaireRetrait() {
     document.getElementById("btnTransfert").style.display = "none";
