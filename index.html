@@ -5,9 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>MasterSecure Mobile Premium</title>
 
-<!-- Lien vers votre icône -->
+<!-- Liens pour l'icône et l'installation de l'application (PWA) -->
 <link rel="icon" type="image/png" href="icone10.png">
 <link rel="apple-touch-icon" href="icone10.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#ff5500">
 
 <style>
 *{
@@ -1354,5 +1356,19 @@ document.getElementById("chatMessage").addEventListener("keypress", function(eve
 });
 </script>
 
+<!-- Script pour l'enregistrement du Service Worker (Installation PWA) -->
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('sw.js')
+                .then(registration => {
+                    console.log('Service Worker enregistré avec succès');
+                })
+                .catch(error => {
+                    console.log('Erreur d\'enregistrement du Service Worker', error);
+                });
+        });
+    }
+</script>
 </body>
 </html>
