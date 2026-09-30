@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>MasterSecure Mobile Premium</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background: #0f111a;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start; 
+    padding:40px 20px; 
+    overflow-y: auto; 
+    overflow-x: hidden;
+    position: relative;
+}
+
+body::before, body::after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    z-index: 0;
+    filter: blur(100px);
+    opacity: 0.15;
+}
+body::before {
+    background: #ff5500;
+    top: 10%;
+    left: -100px;
+}
+body::after {
+    background: #00ff95;
+    bottom: 10%;
+    right: -100px;
+}
+
+.container{
+    width:100%;
+    max-width:480px;
+    z-index: 1;
+    margin: 0 auto;
+}
+
+.header-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 14px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+}
+
+.logo-text {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    padding-right: 15px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 26px;
+}
+
+.card-preview{
+    position:relative;
+    width:100%;
+    aspect-ratio: 1.58 / 1;
+    margin:0 auto 30px auto;
+    border-radius:24px;
+    overflow:hidden;
+    background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.03) 100%);
+    backdrop-filter:blur(30px);
+    -webkit-backdrop-filter:blur(30px);
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4), inset 0 1px 1px rgba(255,255,255,0.2);
+    padding: 25px;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.mc-logo{
+    position:absolute;
+    right: 25px;
+    top: 25px;
+    display:flex;
+}
+
+.circle1{
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:#EB001B;
+}
+
+.circle2{
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:#F79E1B;
+    margin-left:-14px;
+    opacity:0.9;
+}
+
+.chip{
+    width:48px;
+    height:35px;
+    background:linear-gradient(135deg, #f2cb6c 0%, #c69331 100%);
+    border-radius:8px;
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.4);
+    position: relative;
+}
+
+.number{
+    font-size: 24px;
+    letter-spacing: 3px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    margin: 15px 0;
+}
+
+.bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items: flex-end;
+}
+
+.bottom-label {
+    font-size:9px;
+    opacity: 0.5;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+}
+
+.bottom-value {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.form-box{
+    width: 100%;
+    background: rgba(18, 22, 35, 0.75);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border-radius:28px;
+    padding: 25px;
+    border: 1px solid rgba(255,255,255,0.07);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+
+h2{
+    color:white;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom:20px;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+input, select {
+    width:100%;
+    padding:16px 20px;
+    margin-bottom:15px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius:16px;
+    background: rgba(255,255,255,0.04);
+    color:white;
+    font-size: 15px;
+    outline:none;
+    transition: all 0.3s;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+select option {
+    background: #0f111a;
+    color: white;
+}
+
+input:focus, select:focus {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(247, 158, 27, 0.5);
+    box-shadow: 0 0 15px rgba(247, 158, 27, 0.1);
+}
+
+button{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:16px;
+    font-size:15px;
+    font-weight:bold;
+    color:white;
+    cursor:pointer;
+    background: linear-gradient(90deg, #ff4500, #ff8c00);
+    box-shadow: 0 4px 20px rgba(255, 69, 0, 0.3);
+    transition: all 0.3s;
+}
+
+button:hover {
+    box-shadow: 0 6px 25px rgba(255, 69, 0, 0.45);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.error-message {
+    display: none;
+    background: rgba(235, 0, 27, 0.15);
+    color: #ff5252;
+    padding: 15px;
+    border-radius: 14px;
+    margin-top: 20px;
+    border: 1px solid rgba(235, 0, 27, 0.3);
+    font-weight: 600;
+    font-size: 13px;
+    text-align: center;
+}
+
+.result{
+    display:none;
+    margin-top:10px;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.info-dotation {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 18px;
+    margin-bottom: 25px;
+}
+
+.solde-container {
+    background: linear-gradient(135deg, rgba(0, 255, 149, 0.12) 0%, rgba(0, 255, 149, 0.02) 100%);
+    border: 1px solid rgba(0, 255, 149, 0.25);
+    border-radius: 14px;
+    padding: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-retrait {
+    background: linear-gradient(90deg, #00ff95, #00b36b);
+    color: #0f111a;
+    font-weight: 700;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    box-shadow: 0 4px 15px rgba(0, 255, 149, 0.2);
+}
+.btn-retrait:hover {
+    box-shadow: 0 6px 20px rgba(0, 255, 149, 0.35);
+}
+
+.btn-transfert {
+    background: linear-gradient(90deg, #0088ff, #0055ff);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 136, 255, 0.2);
+    margin-bottom: 10px;
+}
+.btn-transfert:hover {
+    box-shadow: 0 6px 20px rgba(0, 136, 255, 0.35);
+}
+
+.countdown-box {
+    display: none;
+    background: rgba(255, 170, 0, 0.1);
+    border: 1px dashed rgba(255, 170, 0, 0.3);
+    padding: 12px;
+    border-radius: 12px;
+    text-align: center;
+    margin-top: 10px;
+    color: #ffaa00;
+    font-size: 13.5px;
+    font-weight: 600;
+    animation: fadeIn 0.4s ease;
+}
+
+.dotation-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.dotation-row:last-child {
+    border-bottom: none;
+}
+
+.dotation-label {
+    color: #94a3b8;
+}
+
+.dotation-value {
+    font-weight: 600;
+    color: #f1f5f9;
+}
+
+.highlight-green {
+    color: #00ff95 !important;
+    text-shadow: 0 0 10px rgba(0, 255, 149, 0.2);
+}
+
+.tx-list {
+    max-height: 330px;
+    overflow-y: auto;
+    padding-right: 5px;
+    margin-bottom: 30px;
+}
+
+.tx-list::-webkit-scrollbar {
+    width: 4px;
+}
+.tx-list::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+}
+
+.transaction {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    padding: 16px;
+    border-radius: 16px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s;
+}
+
+.transaction:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.tx-income {
+    border-left: 4px solid #00ff95; 
+}
+
+.tx-expense {
+    border-left: 4px solid #ff4500; 
+}
+
+.tx-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.tx-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #f8fafc;
+}
+
+.tx-date {
+    font-size: 11px;
+    color: #64748b;
+    margin-top: 4px;
+}
+
+.tx-eta {
+    font-size: 10.5px;
+    color: #ffaa00;
+    font-weight: 500;
+    margin-top: 3px;
+    line-height: 1.3;
+}
+
+.amount {
+    font-weight: 700;
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+.amount-in {
+    color: #00ff95;
+}
+
+.amount-out {
+    color: #ff5252;
+}
+
+.support-chat {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 18px;
+    margin-top: 25px;
+}
+
+.support-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.support-title::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #00ff95;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00ff95;
+}
+
+.chat-box {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 15px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.chat-box::-webkit-scrollbar {
+    width: 4px;
+}
+.chat-box::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+}
+
+.msg {
+    max-width: 85%;
+    padding: 12px 16px;
+    border-radius: 16px;
+    font-size: 12.5px;
+    line-height: 1.4;
+}
+
+.msg-user {
+    background: rgba(255, 255, 255, 0.06);
+    color: #f1f5f9;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.02);
+}
+
+.msg-agent {
+    background: linear-gradient(135deg, rgba(247, 158, 27, 0.12) 0%, rgba(247, 158, 27, 0.03) 100%);
+    color: #ffb84d;
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+    border: 1px solid rgba(247, 158, 27, 0.2);
+}
+
+.msg-meta {
+    font-size: 10px;
+    color: #64748b;
+    margin-top: 4px;
+    display: block;
+    font-weight: 500;
+}
+
+.msg-user .msg-meta {
+    text-align: right;
+}
+
+.chat-input-container {
+    display: flex;
+    gap: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 15px;
+    margin-top: 5px;
+}
+
+.chat-input-container input {
+    margin-bottom: 0;
+    padding: 12px 16px;
+    font-size: 13px;
+    border-radius: 12px;
+}
+
+.chat-input-container button {
+    width: auto;
+    padding: 0 20px;
+    font-size: 13px;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #ff5500, #ff7700);
+    white-space: nowrap;
+}
+
+/* Bouton Portail Auto-Entrepreneur */
+.btn-ae-portal {
+    display: block;
+    width: 100%;
+    margin-top: 15px;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border: 1px solid rgba(0, 255, 149, 0.4);
+    border-radius: 14px;
+    color: #00ff95;
+    font-size: 13.5px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(0, 255, 149, 0.1);
+    transition: all 0.3s ease;
+}
+
+.btn-ae-portal:hover {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    border-color: #00ff95;
+    box-shadow: 0 6px 20px rgba(0, 255, 149, 0.25);
+    color: #ffffff;
+}
+
+.retrait-form-container {
+    display: none;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 15px;
+    margin-top: 12px;
+    animation: fadeIn 0.4s ease;
+}
+.bank-info-box {
+    background: rgba(0, 255, 149, 0.05);
+    border: 1px solid rgba(0, 255, 149, 0.15);
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    font-size: 12.5px;
+    color: #e2e8f0;
+}
+.retrait-error {
+    color: #ff5252;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: -5px;
+    margin-bottom: 10px;
+    display: none;
+}
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    border-top: 4px solid #00ff95;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header-logos">
+        <span class="logo-text">Secured By</span>
+        <div class="logo-container">
+            <svg style="height: 24px;" viewBox="0 0 100 60">
+                <circle cx="35" cy="30" r="25" fill="#EB001B" />
+                <circle cx="65" cy="30" r="25" fill="#F79E1B" opacity="0.85" />
+            </svg>
+        </div>
+    </div>
+
+    <div class="card-preview">
+        <div class="mc-logo">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+        </div>
+        <div class="chip"></div>
+        <div class="number" id="displayNumber">**** **** **** ****</div>
+        <div class="bottom">
+            <div>
+                <div class="bottom-label">TITULAIRE</div>
+                <div class="bottom-value" id="displayName">NOM PRENOM</div>
+            </div>
+            <div>
+                <div class="bottom-label">EXP</div>
+                <div class="bottom-value" id="displayExp">MM/AA</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-box">
+        
+        <div id="formInputs">
+            <h2>Espace Client Sécurisé</h2>
+            <input type="text" id="cardNumber" inputmode="numeric" pattern="[0-9]*" placeholder="Numéro de carte">
+            <input type="text" id="cardName" placeholder="Nom du titulaire">
+            <input type="text" id="cardExp" placeholder="MM/AA (Ex: 10/26)">
+            <button onclick="showOperations()">Afficher le tableau de bord</button>
+        </div>
+
+        <div class="error-message" id="errorMessage">
+            Données de carte incorrectes. Veuillez vérifier vos informations.
+        </div>
+
+        <div class="result" id="result">
+            
+            <div class="info-dotation">
+                <div class="solde-container">
+                    <span style="color: #64748b; font-size: 13px; font-weight: 500;">Solde actuel :</span>
+                    <span class="amount-in" id="soldeAffiche" style="font-size: 20px; font-weight: 800;">20 000.00 MAD</span>
+                </div>
+                
+                <div class="dotation-row" style="margin-bottom: 15px; border-bottom: none; background: rgba(255, 69, 0, 0.1); padding: 10px 15px; border-radius: 10px; border: 1px dashed rgba(255, 69, 0, 0.3);">
+                    <span class="dotation-label" style="color: #ff5252; font-weight: 600;">plafond dépassé :</span>
+                    <span class="dotation-value" style="color: #ff5252;">74 785,51 MAD</span>
+                </div>
+                
+                <!-- NOUVEAU BOUTON TRANSFERT BANQUE -->
+                <button class="btn-retrait btn-transfert" id="btnTransfert" onclick="afficherFormulaireTransfert()" style="display: none;">Transfert Banque</button>
+
+                <button class="btn-retrait" id="btnRetrait" onclick="afficherFormulaireRetrait()" style="display: none;">Retrait sur compte</button>
+                
+                <!-- NOUVEAU FORMULAIRE DE TRANSFERT -->
+                <div class="retrait-form-container" id="transfertFormContainer">
+                    <select id="transfertPays" onchange="gererAffichagePays()">
+                        <option value="">Sélectionnez le pays de destination</option>
+                        <option value="MA">Maroc</option>
+                        <option value="FR">France</option>
+                        <option value="AUTRE">Autre pays</option>
+                    </select>
+
+                    <select id="transfertBanque" style="display: none;">
+                        <option value="">Sélectionnez l'établissement / Banque</option>
+                        <option value="Attijariwafa Bank">Attijariwafa Bank</option>
+                        <option value="Banque Populaire">Banque Populaire (Chaabi)</option>
+                        <option value="BMCE Bank of Africa">BMCE Bank of Africa</option>
+                        <option value="CIH Bank">CIH Bank</option>
+                        <option value="Crédit Agricole du Maroc">Crédit Agricole du Maroc</option>
+                        <option value="Société Générale Maroc">Société Générale Maroc</option>
+                        <option value="BMCI">BMCI</option>
+                        <option value="Crédit du Maroc">Crédit du Maroc</option>
+                        <option value="CFG Bank">CFG Bank</option>
+                        <option value="Al Barid Bank">Al Barid Bank</option>
+                        <option value="Umnia Bank">Umnia Bank</option>
+                        <option value="Bank Assafa">Bank Assafa</option>
+                        <option value="Simple">Simple (Paiement Mobile)</option>
+                        <option value="Jibi">Jibi</option>
+                        <option value="Inwi Money">Inwi Money</option>
+                        <option value="Orange Money">Orange Money</option>
+                        <option value="Cash Plus">Cash Plus</option>
+                        <option value="Wafacash">Wafacash</option>
+                    </select>
+
+                    <input type="text" id="transfertRIB" placeholder="RIB (24 chiffres) ou Numéro de compte" style="display: none;">
+                    <input type="text" id="transfertNom" placeholder="Nom complet du destinataire" style="display: none;">
+                    <input type="number" id="transfertMontant" placeholder="Montant à transférer (MAD)" style="display: none;">
+
+                    <div class="retrait-error" id="transfertError"></div>
+                    <button class="btn-retrait btn-transfert" id="btnValiderTransfert" onclick="demanderCodePin()" style="display: none; margin: 0; padding: 12px;">Valider le transfert</button>
+                </div>
+
+                <!-- CONTENEUR CODE PIN -->
+                <div class="retrait-form-container" id="pinCodeContainer" style="display:none; text-align:center;">
+                    <p style="color:#e2e8f0; margin-bottom:15px; font-size:14px; font-weight:600;">Code de confirmation requis</p>
+                    <input type="password" id="transfertPin" placeholder="••••" maxlength="4" style="text-align:center; letter-spacing: 15px; font-size: 24px; padding: 15px;">
+                    <div class="retrait-error" id="pinError"></div>
+                    <button class="btn-retrait btn-transfert" onclick="validerTransfertFinal()" style="margin: 0; padding: 12px;">Confirmer</button>
+                </div>
+
+                <!-- CONTENEUR PATIENTER -->
+                <div id="loadingContainer" style="display:none; text-align:center; padding:30px 20px; background: rgba(255, 255, 255, 0.02); border-radius: 16px; margin-top: 12px;">
+                    <div class="spinner"></div>
+                    <p style="color:#00ff95; margin-top:20px; font-weight: 600; font-size: 14px;">Traitement bancaire en cours, veuillez patienter...</p>
+                </div>
+
+                <!-- CONTENEUR SUCCES -->
+                <div id="successContainer" style="display:none; text-align:center; padding:25px; background: rgba(0, 255, 149, 0.05); border: 1px solid rgba(0, 255, 149, 0.3); border-radius: 16px; margin-top:12px; box-shadow: 0 10px 30px rgba(0,255,149,0.1);">
+                    <div style="font-size: 50px; margin-bottom: 15px; text-shadow: 0 0 20px rgba(0,255,149,0.5);">✅</div>
+                    <h3 style="color:#00ff95; margin-bottom:12px; font-size: 18px;">Virement effectué avec succès</h3>
+                    <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; border: 1px dashed rgba(0,255,149,0.2);">
+                        <p style="color:#e2e8f0; font-size:13.5px; line-height: 1.6; margin: 0;">Notification :<br><span style="color:#fff; font-weight: 600;">Le destinataire va recevoir l'argent dans 3 à 5 jours ouvrables.</span></p>
+                    </div>
+                    <button class="btn-retrait" style="margin-top:20px; background: linear-gradient(135deg, #1e293b 0%, #334155 100%); box-shadow: none;" onclick="fermerSuccess()">Terminer</button>
+                </div>
+
+                <div class="retrait-form-container" id="retraitFormContainer">
+                    <div class="bank-info-box">
+                        <strong>Compte de destination :</strong><br>
+                        Attijariwafa bank •••• 9267
+                    </div>
+                    <input type="number" id="montantRetrait" placeholder="Montant (Max 20 000 MAD)" max="20000" style="margin-bottom: 10px; padding: 12px 15px; font-size: 14px;">
+                    <div class="retrait-error" id="retraitError">Vous ne pouvez pas retirer plus de 20 000 MAD.</div>
+                    <button class="btn-retrait" onclick="executerRetrait()" style="margin: 0; padding: 12px;">Confirmer le retrait</button>
+                </div>
+
+                <div class="countdown-box" id="countdownBox" style="display: block;">
+                    Prochain retrait disponible dans : <span id="countdownTimer">--h --min --s</span>
+                </div>
+                
+                <div class="dotation-row" style="margin-top: 15px;">
+                    <span class="dotlabel">Devise principale :</span>
+                    <span class="dotation-value">MAD</span>
+                </div>
+                <div class="dotation-row">
+                    <span class="logo-text" style="color: #94a3b8; font-size: 13px; font-weight: normal; letter-spacing: normal; text-transform: none; border-right: none; padding-right: 0;">Dotation totale attendue :</span>
+                    <span class="dotation-value">100 000 MAD</span>
+                </div>
+                <div class="dotation-row">
+                    <span class="dotation-label">Reste disponible :</span>
+                    <span class="dotation-value highlight-green" id="resteDisponibleAffiche">37 792,45 MAD</span>
+                </div>
+            </div>
+
+            <div class="tx-list" id="transactionList">
+
+                <div class="transaction tx-expense">
+                    <div class="tx-info">
+                        <span class="tx-title">Paiement Ads meta insta</span>
+                        <span class="tx-date">Le : 25/09/2026</span>
+                    </div>
+                    <span class="amount amount-out">-344,76 MAD</span>
+                </div>
+
+                <div class="transaction tx-income">
+                    <div class="tx-info">
+                        <span class="tx-title">Virement mensuel #3 reçu de la part de DEVMEM S.A</span>
+                        <span class="tx-date">Émis le : 13/09/2026</span>
+                        <span class="tx-eta">Reçu sur carte le : 13/09/2026</span>
+                    </div>
+                    <span class="amount amount-in">+16 071,45 MAD</span>
+                </div>
+
+                <div class="transaction tx-expense">
+                    <div class="tx-info">
+                        <span class="tx-title">Paiement Ads meta insta</span>
+                        <span class="tx-date">Le : 22/08/2026</span>
+                    </div>
+                    <span class="amount amount-out">-174,33 MAD</span>
+                </div>
+
+                <div class="transaction tx-income">
+                    <div class="tx-info">
+                        <span class="tx-title">Virement mensuel #2 reçu de la part de DEVMEM S.A</span>
+                        <span class="tx-date">Émis le : 13/08/2026</span>
+                        <span class="tx-eta">Reçu sur carte le : 13/08/2026</span>
+                    </div>
+                    <span class="amount amount-in">+16 071,45 MAD</span>
+                </div>
+
+                <div class="transaction tx-income">
+                    <div class="tx-info">
+                        <span class="tx-title">Recharge effectuée par Memphis Doku</span>
+                        <span class="tx-date">Émis le : 13/08/2026</span>
+                        <span class="tx-eta">Reçu sur carte le : 13/08/2026</span>
+                    </div>
+                    <span class="amount amount-in">+3 602,77 MAD</span>
+                </div>
+
+                <div class="transaction tx-income">
+                    <div class="tx-info">
+                        <span class="tx-title">Retrait depuis Fiverr</span>
+                        <span class="tx-date">Émis le : 19/07/2026</span>
+                        <span class="tx-eta">Reçu sur carte le : 19/07/2026</span>
+                    </div>
+                    <span class="amount amount-in">+2 273,45 MAD</span>
+                </div>
+
+                <div class="transaction tx-expense">
+                    <div class="tx-info">
+                        <span class="tx-title">Retrait vers Attijariwafa bank (•••• 9267)</span>
+                        <span class="tx-date">Le : 18/07/2026</span>
+                        <span class="tx-eta">Voir le support client</span>
+                    </div>
+                    <span class="amount amount-out">-20 000,00 MAD</span>
+                </div>
+
+                <div class="transaction tx-income">
+                    <div class="tx-info">
+                        <span class="tx-title">Recharge effectuée par Memphis Doku</span>
+                        <span class="tx-date">Émis le : 16/07/2026</span>
+                        <span class="tx-eta">Reçu sur carte le : 16/07/2026</span>
+                    </div>
+                    <span class="amount amount-in">+10 660,00 MAD</span>
+                </div>
+
+                <div class="transaction tx-expense">
+                    <div class="tx-info">
+                        <span class="tx-title">Retrait vers Attijariwafa bank (•••• 9267)</span>
+                        <span class="tx-date">Le : 13/07/2026</span>
+                        <span class="tx-eta">Voir le support client</span>
+                    </div>
+                    <span class="amount amount-out">-20 000,00 MAD</span>
+                </div>
+                
+                <div class="transaction tx-income">
+                    <div class="tx-info">
+                        <span class="tx-title">Virement mensuel #1 reçu de la part de DEVMEM S.A</span>
+                        <span class="tx-date">Émis le : 12/07/2026</span>
+                        <span class="tx-eta">Reçu sur carte le : 13/07/2026</span>
+                    </div>
+                    <span class="amount amount-in">+16 020,90 MAD</span>
+                </div>
+
+                <div class="transaction tx-expense">
+                    <div class="tx-info">
+                        <span class="tx-title">Retrait vers Attijariwafa bank (•••• 9267)</span>
+                        <span class="tx-date">Le : 11/07/2026</span>
+                        <span class="tx-eta">Reçu sur carte le : 13/07/2026</span>
+                    </div>
+                    <span class="amount amount-out">-3 000,00 MAD</span>
+                </div>
+
+                <div class="transaction tx-expense">
+                    <div class="tx-info">
+                        <span class="tx-title">Retrait vers Attijariwafa bank (•••• 9267)</span>
+                        <span class="tx-date">Le : 10/07/2026</span>
+                        <span class="tx-eta">Reçu sur carte le : 13/07/2026</span>
+                    </div>
+                    <span class="amount amount-out">-3 000,00 MAD</span>
+                </div>
+                
+                <div class="transaction tx-income">
+                    <div class="tx-info">
+                        <span class="tx-title">Recharge effectuée par Memphis Doku</span>
+                        <span class="tx-date">Émis le : 07/07/2026</span>
+                        <span class="tx-eta">Reçu sur carte le : 07/07/2026</span>
+                    </div>
+                    <span class="amount amount-in">+6 342,30 MAD</span>
+                </div>
+
+                <div class="transaction tx-expense">
+                    <div class="tx-info">
+                        <span class="tx-title">Retrait vers Attijariwafa bank (•••• 9267)</span>
+                        <span class="tx-date">Le : 06/07/2026</span>
+                    </div>
+                    <span class="amount amount-out">-3 000,00 MAD</span>
+                </div>
+
+                <div class="transaction tx-income">
+                    <div class="tx-info">
+                        <span class="tx-title">Recharge effectuée par Memphis Doku</span>
+                        <span class="tx-date">Émis le : 01/07/2026</span>
+                        <span class="tx-eta">Reçu sur carte le : 04/07/2026</span>
+                    </div>
+                    <span class="amount amount-in">+7 488,23 MAD</span>
+                </div>
+                
+                <div class="transaction tx-income">
+                    <div class="tx-info">
+                        <span class="tx-title">Retrait depuis Fiverr</span>
+                        <span class="tx-date">Émis le : 18/06/2026</span>
+                        <span class="tx-eta">Reçu sur carte le : 27/06/2026</span>
+                    </div>
+                    <span class="amount amount-in">+4 622,50 MAD</span>
+                </div>
+
+                <div class="transaction tx-income">
+                    <div class="tx-info">
+                        <span class="tx-title">Retrait depuis Fiverr</span>
+                        <span class="tx-date">Émis le : 18/06/2026</span>
+                        <span class="tx-eta">Reçu sur carte le : 27/06/2026</span>
+                    </div>
+                    <span class="amount amount-in">+4 622,50 MAD</span>
+                </div>
+
+                <div class="transaction tx-income">
+                    <div class="tx-info">
+                        <span class="tx-title">Retrait depuis Fiverr</span>
+                        <span class="tx-date">Émis le : 18/06/2026</span>
+                        <span class="tx-eta">Reçu sur carte le : 27/06/2026</span>
+                    </div>
+                    <span class="amount amount-in">+4 622,50 MAD</span>
+                </div>
+
+                <div class="transaction tx-income">
+                    <div class="tx-info">
+                        <span class="tx-title">Retrait depuis Fiverr</span>
+                        <span class="tx-date">Émis le : 18/06/2026</span>
+                        <span class="tx-eta">Reçu sur carte le : 27/06/2026</span>
+                    </div>
+                    <span class="amount amount-in">+3 698,00 MAD</span>
+                </div>
+
+                <div class="transaction tx-expense">
+                    <div class="tx-info">
+                        <span class="tx-title">Paiement en ligne Fiverr</span>
+                        <span class="tx-date">Le : 18/06/2026</span>
+                    </div>
+                    <span class="amount amount-out">-346,13 $</span>
+                </div>
+
+                <div class="transaction tx-expense">
+                    <div class="tx-info">
+                        <span class="tx-title">Paiement en ligne Fiverr</span>
+                        <span class="tx-date">Le : 18/06/2026</span>
+                    </div>
+                    <span class="amount amount-out">-227,15 $</span>
+                </div>
+
+                <div class="transaction tx-expense">
+                    <div class="tx-info">
+                        <span class="tx-title">Paiement en ligne Fiverr</span>
+                        <span class="tx-date">Le : 16/06/2026</span>
+                    </div>
+                    <span class="amount amount-out">-248,78 $</span>
+                </div>
+
+                <div class="transaction tx-expense">
+                    <div class="tx-info">
+                        <span class="tx-title">Paiement en ligne Fiverr</span>
+                        <span class="tx-date">Le : 16/06/2026</span>
+                    </div>
+                    <span class="amount amount-out">-151,43 $</span>
+                </div>
+
+                <div class="transaction tx-income">
+                    <div class="tx-info">
+                        <span class="tx-title">Retrait depuis Fiverr</span>
+                        <span class="tx-date">Émis le : 05/06/2026</span>
+                        <span class="tx-eta">Reçu sur carte le : 10/06/2026</span>
+                    </div>
+                    <span class="amount amount-in">+2 462,81 MAD</span>
+                </div>
+
+                <div class="transaction tx-expense">
+                    <div class="tx-info">
+                        <span class="tx-title">Paiement en ligne Fiverr</span>
+                        <span class="tx-date">Le : 05/06/2026</span>
+                    </div>
+                    <span class="amount amount-out">-86,53 $</span>
+                </div>
+
+                <div class="transaction tx-expense">
+                    <div class="tx-info">
+                        <span class="tx-title">Paiement en ligne Fiverr</span>
+                        <span class="tx-date">Le : 04/06/2026</span>
+                    </div>
+                    <span class="amount amount-out">-151,43 $</span>
+                </div>
+
+            </div>
+
+            <div class="support-chat">
+                <div class="support-title">Assistance en direct</div>
+                <div class="chat-box" id="chatBox">
+                    <div class="msg msg-user">
+                        Pourquoi le compte à rebours indique-t-il 46 heures alors qu'hier, lors de ma dernière consultation, il ne restait plus que 8 heures ?
+                        <span class="msg-meta">Moi • En ligne</span>
+                    </div>
+
+                    <div class="msg msg-agent">
+                        Le compte à rebours se réinitialise automatiquement à 48 heures par défaut à chaque fois que de nouveaux fonds sont reçus sur votre carte. Pour éviter cela, nous vous conseillons de traiter vos opérations une par une : attendez que les fonds d'un retrait soient définitivement visibles sur votre carte avant de lancer une nouvelle demande de transfert.
+                        <br><br>
+                        Ce système de décompte est temporairement mis en place afin de garantir la sécurité stricte de vos fonds et la conformité de vos transactions bancaires.
+                        <span class="msg-meta">Agent Support • En ligne</span>
+                    </div>
+
+                    <div class="msg msg-user">
+                        Bonjour,<br>
+                        Je vous contacte concernant un retrait que j'ai effectué hier. Le compte à rebours (délai de traitement) sur l'application est maintenant terminé, mais l'argent n'est toujours pas arrivé sur mon compte.<br><br>
+                        J'aurais deux questions s'il vous plaît :<br>
+                        1. Quand vais-je recevoir les fonds de ce retrait ?<br>
+                        2. Est-ce que je peux effectuer un nouveau retrait dès maintenant, ou dois-je attendre que le premier soit finalisé pour éviter de bloquer la transaction ?
+                        <span class="msg-meta">Moi • En ligne</span>
+                    </div>
+
+                    <div class="msg msg-agent">
+                        Bonjour,<br>
+                        Nous vous informons que votre retrait a bien été validé et traité de notre côté.<br><br>
+                        Cependant, veuillez noter que les retraits ne sont pas traités par les banques pendant les week-ends et les jours fériés. Comme nous sommes aujourd'hui samedi, vous devriez recevoir vos fonds le lundi 13 juillet.<br><br>
+                        Concernant votre deuxième question : oui, vous pouvez tout à fait effectuer un nouveau retrait dès maintenant. Cela ne bloquera pas votre transaction en cours.<br><br>
+                        Nous restons à votre disposition si vous avez d'autres questions.
+                        <span class="msg-meta">Agent Support • En ligne</span>
+                    </div>
+
+                    <div class="msg msg-user">
+                        Bonjour, est-ce qu'il y a une possibilité de transférer tout le montant de ma carte Mastercard vers mon compte, plutôt que d'être limité à 3000 Dh ?
+                        <span class="msg-meta">Moi • En ligne</span>
+                    </div>
+
+                    <div class="msg msg-agent">
+                        Pour répondre à votre demande concernant l'augmentation du plafond de virement de votre carte Mastercard vers votre compte, nous vous invitons à consulter les paramètres de votre carte directement depuis votre application bancaire. Vous pouvez y ajuster la limite jusqu'à un maximum de 20 000 DH.
+                        <br><br>
+                        Par ailleurs, pour bénéficier d'un plafond allant jusqu'à 100 000 DH, nous vous recommandons de souscrire à notre carte GOLD E-COM. Cette offre est gratuite pour les trois premiers mois, puis au tarif de 299 MAD TTC par mois.
+                        <br><br>
+                        Nous restons à votre disposition pour toute information complementary.
+                        <span class="msg-meta">Agent Support • En ligne</span>
+                    </div>
+
+                    <div class="msg msg-agent">
+                        Bonjour,<br>
+                        Nous vous contactons concernant l'utilisation de vos services Mastercard.<br><br>
+                        À la demande de votre établissement bancaire partenaire, nous avons procédé à une vérification de la nature de vos transactions. Il apparaît que vous exercez une activité d'indépendant (freelance) en ligne.<br><br>
+                        Afin de vous assurer une continuité de service optimale et de respecter la réglementation financière en vigueur, nous vous informons que vous devez obligatoirement vous inscrire sur la plateforme officielle de l'Auto-Entrepreneur au Maroc.<br><br>
+                        Cette démarche administrative vous permettra de bénéficier des avantages et plafonds réglementaires suivants :<br>
+                        • <strong>Plafond de retrait :</strong> jusqu'à 50 000 MAD par transaction.<br>
+                        • <strong>Dotation de paiement en devises :</strong> jusqu'à 150 000 MAD par an.<br>
+                        • <strong>Dotation de réception en devises :</strong> jusqu'à 200 000 MAD par an.<br><br>
+                        <strong>Remarque importante :</strong> La finalisation de cette démarche est obligatoire pour maintenir l'accès à l'ensemble de nos services financiers et éviter toute restriction sur vos opérations futures.<br><br>
+                        Nous vous invitons à effectuer votre inscription dans les plus brefs délais sur le portail officiel.
+                        <span class="msg-meta">Agent Support • En ligne</span>
+                    </div>
+
+                    <div class="msg msg-agent">
+                        Afin de maintenir l'accès à l'ensemble de nos services financiers et de nous conformer aux exigences réglementaires, nous vous rappelons qu'il est nécessaire de formaliser votre activité sous le statut d'Auto-Entrepreneur.<br><br>
+                        💳 <strong>État temporaire de vos services :</strong><br>
+                        Pendant la période de finalisation et de vérification de votre dossier :<br><br>
+                        ✅ <strong>Paiements entrants :</strong> Vous pouvez toujours recevoir des paiements sur votre carte rechargeable normalement.<br><br>
+                        ❌ <strong>Transferts & Retraits :</strong> Les virements/retraits vers votre compte bancaire depuis la carte rechargeable sont temporairement suspendus.
+                        <span class="msg-meta">Agent Support • En ligne</span>
+                    </div>
+
+                    <div class="msg msg-user">
+                        Je me suis inscrit sur le site de l'Auto-Entrepreneur. Puis-je maintenant effectuer un virement du solde de ma carte vers mon compte bancaire ? Dois-je me rendre à la banque muni du document que j'ai obtenu sur le site ?
+                        <span class="msg-meta">Moi • En ligne</span>
+                    </div>
+
+                    <div class="msg msg-agent">
+                        Afin de pouvoir effectuer des virements depuis votre carte bancaire vers votre compte bancaire, nous devons recevoir votre Identifiant Fiscal (IF) directement de la Direction Générale des Impôts. Dès réception de ce numéro, l'ensemble de vos opérations sera débloqué.<br><br>
+                        Cet identifiant nous est transmis directement par l'administration fiscale. En attendant, vous pouvez continuer à recevoir des fonds sur votre carte normalement, mais le transfert vers votre compte bancaire reste temporairement indisponible.<br><br>
+                        Nous vous confirmons que vous avez accompli toutes les démarches nécessaires ; il ne vous reste plus qu'à attendre la réception de votre Identifiant Fiscal.
+                        <span class="msg-meta">Agent Support • En ligne</span>
+                    </div>
+
+                </div>
+
+                <div class="chat-input-container">
+                    <input type="text" id="chatMessage" placeholder="Écrivez votre message ici...">
+                    <button onclick="sendChatMessage()">Envoyer</button>
+                </div>
+
+                <!-- Bouton Portail Auto-Entrepreneur -->
+                <a href="https://rn.ae.gov.ma/registration" target="_blank" class="btn-ae-portal">
+                    PORTAIL AUTO-ENTREPRENEUR
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+var cardNumber = document.getElementById("cardNumber");
+var cardName = document.getElementById("cardName");
+var cardExp = document.getElementById("cardExp");
+var displayNumber = document.getElementById("displayNumber");
+var displayName = document.getElementById("displayName");
+var displayExp = document.getElementById("displayExp");
+
+var intervalleId;
+var soldeActuel = 20000.00;
+
+cardNumber.onkeyup=function(){
+    let v = this.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+    let matches = v.match(/\d{4,16}/g);
+    let match = matches && matches[0] || '';
+    let parts = [];
+
+    for (let i=0, len=match.length; i<len; i+=4) {
+        parts.push(match.substring(i, i+4));
+    }
+
+    if (parts.length > 0) {
+        displayNumber.innerHTML = parts.join(' ');
+    } else {
+        displayNumber.innerHTML = this.value || "**** **** **** ****";
+    }
+}
+
+cardName.onkeyup=function(){
+    displayName.innerHTML = this.value ? this.value.toUpperCase() : "NOM PRENOM";
+}
+
+cardExp.onkeyup=function(){
+    displayExp.innerHTML = this.value || "MM/AA";
+}
+
+function showOperations(){
+    var numIn = cardNumber.value.replace(/\s+/g, '').trim();
+    var nameIn = cardName.value.replace(/\s+/g, ' ').trim().toLowerCase();
+    var expIn = cardExp.value.replace(/\s+/g, '').trim();
+    
+    var resultDiv = document.getElementById("result");
+    var errorDiv = document.getElementById("errorMessage");
+    var formInputs = document.getElementById("formInputs");
+
+    if(numIn === "5311401000460298" && nameIn === "walid mahmoud" && expIn === "10/26"){
+        formInputs.style.display = "none";
+        resultDiv.style.display = "block";
+        errorDiv.style.none = "none";
+        
+        document.getElementById("retraitFormContainer").style.display = "none";
+        document.getElementById("transfertFormContainer").style.display = "none";
+        document.getElementById("btnRetrait").style.display = "none"; 
+        document.getElementById("btnTransfert").style.display = "none"; 
+        
+        // Configuration de la nouvelle date cible : 22 Juillet 2026 à 23:00:00
+        var dateCibleInitiale = new Date(2026, 6, 22, 23, 0, 0).getTime();
+        document.getElementById("countdownBox").style.display = "block";
+        lancerMiseAJourBouton(dateCibleInitiale);
+        
+        // Force le défilement vers le bas de la chat-box au chargement du tableau de bord
+        var chatBox = document.getElementById("chatBox");
+        chatBox.scrollTop = chatBox.scrollHeight;
+        
+    } else {
+        resultDiv.style.display = "none";
+        errorDiv.style.display = "block";
+        errorDiv.style.animation = "none";
+        errorDiv.offsetHeight; 
+        errorDiv.style.animation = "fadeIn 0.3s ease";
+    }
+}
+
+// LOGIQUE DE TRANSFERT BANQUE
+function afficherFormulaireTransfert() {
+    document.getElementById("btnTransfert").style.display = "none";
+    document.getElementById("btnRetrait").style.display = "none";
+    document.getElementById("retraitFormContainer").style.display = "none";
+    document.getElementById("transfertFormContainer").style.display = "block";
+    document.getElementById("transfertError").style.display = "none";
+}
+
+function gererAffichagePays() {
+    var pays = document.getElementById("transfertPays").value;
+    var bqSelect = document.getElementById("transfertBanque");
+    var ribInput = document.getElementById("transfertRIB");
+    var nomInput = document.getElementById("transfertNom");
+    var mntInput = document.getElementById("transfertMontant");
+    var btnValider = document.getElementById("btnValiderTransfert");
+
+    if (pays === "MA") {
+        bqSelect.style.display = "block";
+        ribInput.style.display = "block";
+        nomInput.style.display = "block";
+        mntInput.style.display = "block";
+        btnValider.style.display = "block";
+    } else if (pays !== "") {
+        bqSelect.style.display = "none";
+        ribInput.style.display = "block";
+        nomInput.style.display = "block";
+        mntInput.style.display = "block";
+        btnValider.style.display = "block";
+    } else {
+        bqSelect.style.display = "none";
+        ribInput.style.display = "none";
+        nomInput.style.display = "none";
+        mntInput.style.display = "none";
+        btnValider.style.display = "none";
+    }
+}
+
+function demanderCodePin() {
+    var pays = document.getElementById("transfertPays").value;
+    var banque = document.getElementById("transfertBanque").value;
+    var rib = document.getElementById("transfertRIB").value.trim();
+    var nom = document.getElementById("transfertNom").value.trim();
+    var montant = parseFloat(document.getElementById("transfertMontant").value);
+    var errorDiv = document.getElementById("transfertError");
+
+    if (pays === "MA" && banque === "") {
+        errorDiv.innerHTML = "Veuillez sélectionner un établissement ou une banque.";
+        errorDiv.style.display = "block";
+        return;
+    }
+    if (rib === "" || nom === "") {
+        errorDiv.innerHTML = "Veuillez remplir tous les champs.";
+        errorDiv.style.display = "block";
+        return;
+    }
+    if (isNaN(montant) || montant <= 0) {
+        errorDiv.innerHTML = "Veuillez saisir un montant valide.";
+        errorDiv.style.display = "block";
+        return;
+    }
+    if (montant > soldeActuel) {
+        errorDiv.innerHTML = "Solde insuffisant pour effectuer ce transfert.";
+        errorDiv.style.display = "block";
+        return;
+    }
+
+    errorDiv.style.display = "none";
+    document.getElementById("transfertFormContainer").style.display = "none";
+    document.getElementById("pinCodeContainer").style.display = "block";
+    document.getElementById("transfertPin").value = "";
+}
+
+function validerTransfertFinal() {
+    var pin = document.getElementById("transfertPin").value;
+    var pinError = document.getElementById("pinError");
+    
+    if (pin !== "2140") {
+        pinError.innerHTML = "Code PIN incorrect.";
+        pinError.style.display = "block";
+        return;
+    }
+
+    pinError.style.display = "none";
+    document.getElementById("pinCodeContainer").style.display = "none";
+    document.getElementById("loadingContainer").style.display = "block";
+
+    // Simulation du temps d'attente
+    setTimeout(function() {
+        document.getElementById("loadingContainer").style.display = "none";
+        document.getElementById("successContainer").style.display = "block";
+        
+        var montant = parseFloat(document.getElementById("transfertMontant").value);
+        soldeActuel -= montant;
+        document.getElementById("soldeAffiche").innerHTML = soldeActuel.toLocaleString('fr-FR', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " MAD";
+
+        var banque = document.getElementById("transfertBanque").value;
+        var nom = document.getElementById("transfertNom").value.trim();
+        var txList = document.getElementById("transactionList");
+        var nouvelleTx = document.createElement("div");
+        nouvelleTx.className = "transaction tx-expense";
+        
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var yyyy = today.getFullYear();
+        var dateStr = dd + '/' + mm + '/' + yyyy;
+
+        var txTitre = banque ? "Transfert vers " + banque + " (" + nom + ")" : "Transfert bancaire (" + nom + ")";
+
+        nouvelleTx.innerHTML = `
+            <div class="tx-info">
+                <span class="tx-title">${txTitre}</span>
+                <span class="tx-date">Le : ${dateStr}</span>
+            </div>
+            <span class="amount amount-out">-${montant.toLocaleString('fr-FR', {minimumFractionDigits: 2, maximumFractionDigits: 2})} MAD</span>
+        `;
+        
+        txList.insertBefore(nouvelleTx, txList.firstChild);
+        
+        var dateCibleNouveauRetrait = new Date().getTime() + (72 * 60 * 60 * 1000); 
+        document.getElementById("countdownBox").style.display = "block";
+        lancerMiseAJourBouton(dateCibleNouveauRetrait);
+    }, 2500); // 2.5 secondes de patience
+}
+
+function fermerSuccess() {
+    document.getElementById("successContainer").style.display = "none";
+    document.getElementById("transfertPays").value = "";
+    document.getElementById("transfertRIB").value = "";
+    document.getElementById("transfertNom").value = "";
+    document.getElementById("transfertMontant").value = "";
+    gererAffichagePays();
+}
+
+// FIN DE LA LOGIQUE DE TRANSFERT BANQUE
+
+function afficherFormulaireRetrait() {
+    document.getElementById("btnTransfert").style.display = "none";
+    document.getElementById("btnRetrait").style.display = "none";
+    document.getElementById("transfertFormContainer").style.display = "none";
+    document.getElementById("retraitFormContainer").style.display = "block";
+    document.getElementById("retraitError").style.display = "none";
+}
+
+function executerRetrait() {
+    var montantInput = document.getElementById("montantRetrait");
+    var montant = parseFloat(montantInput.value);
+    var errorDiv = document.getElementById("retraitError");
+
+    if (isNaN(montant) || montant <= 0) {
+        errorDiv.innerHTML = "Veuillez saisir un montant valide.";
+        errorDiv.style.display = "block";
+        return;
+    }
+
+    if (montant > 20000) {
+        errorDiv.innerHTML = "Vous ne pouvez pas retirer plus de 20 000 MAD.";
+        errorDiv.style.display = "block";
+        return;
+    }
+
+    if (montant > soldeActuel) {
+        errorDiv.innerHTML = "Solde insuffisant pour effectuer ce retrait.";
+        errorDiv.style.display = "block";
+        return;
+    }
+
+    errorDiv.style.display = "none";
+    document.getElementById("retraitFormContainer").style.display = "none";
+    
+    soldeActuel -= montant;
+    document.getElementById("soldeAffiche").innerHTML = soldeActuel.toLocaleString('fr-FR', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " MAD";
+
+    var txList = document.getElementById("transactionList");
+    var nouvelleTx = document.createElement("div");
+    nouvelleTx.className = "transaction tx-expense";
+    
+    nouvelleTx.innerHTML = `
+        <div class="tx-info">
+            <span class="tx-title">Retrait vers Attijariwafa bank (•••• 9267)</span>
+            <span class="tx-date">Le : 11/07/2026</span>
+            <span class="tx-eta">Reçu sur carte le : 13/07/2026</span>
+        </div>
+        <span class="amount amount-out">-${montant.toLocaleString('fr-FR', {minimumFractionDigits: 2, maximumFractionDigits: 2})} MAD</span>
+    `;
+    
+    txList.insertBefore(nouvelleTx, txList.firstChild);
+
+    var dateCibleNouveauRetrait = new Date().getTime() + (72 * 60 * 60 * 1000); 
+    document.getElementById("countdownBox").style.display = "block";
+    lancerMiseAJourBouton(dateCibleNouveauRetrait);
+    montantInput.value = "";
+}
+
+function lancerMiseAJourBouton(dateCible) {
+    if(intervalleId) clearInterval(intervalleId);
+
+    function actualiserBouton() {
+        var maintenant = new Date().getTime();
+        var distance = dateCible - maintenant;
+
+        if (distance < 0) {
+            clearInterval(intervalleId);
+            document.getElementById("countdownBox").style.display = "none";
+            document.getElementById("btnTransfert").style.display = "block";
+            document.getElementById("btnRetrait").style.display = "block";
+            return;
+        }
+
+        var jours = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var heures = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var secondes = Math.floor((distance % (1000 * 60)) / 1000);
+
+        var texteAffiche = "";
+        if (jours > 0) {
+            texteAffiche += jours + "j ";
+        }
+        texteAffiche += heures + "h " + minutes + "min " + secondes + "s";
+
+        document.getElementById("countdownTimer").innerHTML = texteAffiche;
+    }
+
+    actualiserBouton();
+    intervalleId = setInterval(actualiserBouton, 1000);
+}
+
+function sendChatMessage(){
+    var inputEl = document.getElementById("chatMessage");
+    var text = inputEl.value.trim();
+    if(text === "") return;
+
+    var chatBox = document.getElementById("chatBox");
+    var userMsg = document.createElement("div");
+    userMsg.className = "msg msg-user";
+    userMsg.innerHTML = text + '<span class="msg-meta">Moi • À l\'instant</span>';
+    
+    chatBox.appendChild(userMsg);
+    inputEl.value = "";
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+document.getElementById("chatMessage").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        sendChatMessage();
+    }
+});
+</script>
+
+</body>
+</html>
